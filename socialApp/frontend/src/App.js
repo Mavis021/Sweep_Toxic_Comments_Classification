@@ -1,4 +1,3 @@
-import './App.css';
 import NewsfeedPage from './pages/NewsfeedPage';
 
 function App() {

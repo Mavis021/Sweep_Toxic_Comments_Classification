@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Button from '../components/Button';
+import Button from '../components/Button/Button';
 import CommentsDisplay from '../components/CommentsDisplay';
-import InputComment from '../components/InputComment';
+import InputComment from '../components/InputComment/InputComment';
 import  { postCommenApi,displayComments } from './NewsfeedApi';
+import { BodyBox, CommentsDisplayBox, InputCommentBox } from './NewsfeedStyled';
+import PostComponent from '../components/PostComponent/PostComponent';
+import Header from '../components/Header/Header';
 // import usePostData from '../hooks/useMutation';
 
 const NewsfeedPage = () => {
@@ -62,17 +65,28 @@ const NewsfeedPage = () => {
 
   return (
     <div>
-      <InputComment 
-        value={inputComment}
-        onChange={(changedData) => {handleChange(changedData)}}
-      />
-      <Button 
-        title={"Submit"} onClick={handleSubmitClick}
-      />
-      <CommentsDisplay comments={fetchedComments}/>
-      <Button 
-        title={"Delete"} onClick={handleDeleteClick}
-      />
+      <Header />
+      <BodyBox>
+        <div>
+          <PostComponent />
+          <InputCommentBox >
+            <InputComment 
+              value={inputComment}
+              onChange={(changedData) => {handleChange(changedData)}}
+            />
+            <Button 
+              title={"Submit"} onClick={handleSubmitClick}
+            />
+          </InputCommentBox>
+        </div>
+
+        <CommentsDisplayBox>
+          <CommentsDisplay comments={fetchedComments}/>
+          <Button 
+            title={"Delete"} onClick={handleDeleteClick}
+          />
+        </CommentsDisplayBox>
+      </BodyBox>
     </div>
   )
 }

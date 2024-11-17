@@ -1,9 +1,10 @@
 import React from 'react'
+import InputComponentStyled from './InputComponentStyled'
 
 const InputComment = ({value, onChange}) => {
   return (
     <div>
-      <input
+      <InputComponentStyled
         type="text"
         value={value || ''}
         placeholder="Enter the comment"

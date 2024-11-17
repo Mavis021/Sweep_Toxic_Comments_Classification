@@ -1,9 +1,14 @@
 const express = require('express')
 const axios = require('axios')
+const path = require('path')
 const router = express.Router()
-const { hateComments, goodComments } = require('../../data/comments')
 const { generateUniqueId } = require('../../config/randomIdGenerator.js')
+const { updateFile } = require('../../data/updateCommentData.js')
+const { getData } = require('../../data/getDataFromJson.js')
 
+const commentsFilePath = path.join(__dirname, '../../data/comments.json')
+
+const{hateComments,goodComments}=getData(commentsFilePath)
 const allComments = [...goodComments,...hateComments]
 
 router.post('/', async (req, res) => {
@@ -33,9 +38,11 @@ router.post('/', async (req, res) => {
 
     //adding the comment to correct array
     if (label === "No hate or offensive speech"){
-      goodComments.push(newComment)
+      updateFile(newComment, "goodComments")
+      // goodComments.push(newComment)
     } else if (label === "Offensive Language Detected" || label === "Hateful"){
-      hateComments.push(newComment)
+      updateFile(newComment, "hateComments")
+      // hateComments.push(newComment)
     }
 
     res.status(200).json({ 

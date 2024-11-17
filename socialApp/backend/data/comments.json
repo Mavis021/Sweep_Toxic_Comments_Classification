@@ -1,0 +1,51 @@
+{
+  "hateComments": [
+    {
+      "commentId": "00",
+      "comment": "This is a great post!",
+      "timestamp": "2024-11-13T08:30:00Z"
+    },
+    {
+      "commentId": "01",
+      "comment": "This is a great post!",
+      "timestamp": "2024-11-13T08:30:00Z"
+    },
+    {
+      "commentId": "02",
+      "comment": "This is a great post!",
+      "timestamp": "2024-11-13T08:30:00Z"
+    },
+    {
+      "commentId": "190",
+      "comment": "Stupid man",
+      "timeStamp": "2024-11-17T13:58:42.602Z"
+    },
+    {
+      "commentId": "713",
+      "comment": "Stupid job",
+      "timeStamp": "2024-11-17T14:01:14.284Z"
+    }
+  ],
+  "goodComments": [
+    {
+      "commentId": "03",
+      "comment": "This is a great post!",
+      "timestamp": "2024-11-13T08:30:00Z"
+    },
+    {
+      "commentId": "04",
+      "comment": "This is a great post!",
+      "timestamp": "2024-11-13T08:30:00Z"
+    },
+    {
+      "commentId": "05",
+      "comment": "This is a great post!",
+      "timestamp": "2024-11-13T08:30:00Z"
+    },
+    {
+      "commentId": "930",
+      "comment": "Good job",
+      "timeStamp": "2024-11-17T14:00:54.994Z"
+    }
+  ]
+}
