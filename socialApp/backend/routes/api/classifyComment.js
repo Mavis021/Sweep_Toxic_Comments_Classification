@@ -1,20 +1,52 @@
 const express = require('express')
 const axios = require('axios')
 const router = express.Router()
+const { hateComments, goodComments } = require('../../data/comments')
+const { generateUniqueId } = require('../../config/randomIdGenerator.js')
+
+const allComments = [...goodComments,...hateComments]
 
 router.post('/', async (req, res) => {
-  try{
+  try {
     const { comment } = req.body
-    console.log(comment)
+
+    if(!comment) {
+      return res.status(400).json({error: 'Comment is required'})
+    }
+
+    console.log('Received Comment:', comment)
 
     //sending comment to the flask server
     const response = await axios.post('http://localhost:5001/classify-comment', { comment })
+    console.log('Classification response:', response.data)
+    const label = response.data.classification
+    console.log('Classification label:', label)
 
-    res.json(response.data)
-  } catch(error) {
-    console.error(error)
+    //Creating the new comment to add to array
+    const newComment ={
+      commentId: generateUniqueId(allComments),
+      comment: comment,
+      timeStamp: new Date().toISOString()
+    }
+
+    console.log('New comment:', newComment)
+
+    //adding the comment to correct array
+    if (label === "No hate or offensive speech"){
+      goodComments.push(newComment)
+    } else if (label === "Offensive Language Detected" || label === "Hateful"){
+      hateComments.push(newComment)
+    }
+
+    res.status(200).json({ 
+      message: 'Comment classified and added successfully', 
+      classification: label,
+      newComment 
+    });
+  } catch (error) {
+    console.error('Error:', error)
     res.status(500).json({ error: 'Failed to classify comment' });
   }
 })
 
-module.exports = router
+module.exports = router;

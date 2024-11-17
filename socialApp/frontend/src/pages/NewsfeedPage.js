@@ -8,6 +8,7 @@ import  { postCommenApi,displayComments } from './NewsfeedApi';
 const NewsfeedPage = () => {
   const[inputComment, setInputComment] = useState('');
   const[fetchedComments, setFetchedComments] = useState([])
+  const[includeHateComments, setIncludeHateComments] = useState (true)
 
   console.log("HI")
   // const mutation = usePostData()
@@ -33,21 +34,31 @@ const NewsfeedPage = () => {
   // }
 
   const handleSubmitClick = async () => {
-    const data = await postCommenApi('/api/classify-comment', {comment : inputComment})
-    console.log(data)
-    setInputComment('')
+    const response = await postCommenApi('/api/classify-comment', {comment : inputComment})
+    console.log('after the comment is submitted:', response)
+
+    if(response.status === 200){
+      console.log('hello from submit')
+      setInputComment('')
+      handleDisplayComments()
+    }
   }
 
   const handleDisplayComments = async () => {
-    const data = await displayComments('/api/display-comments')
+    const data = await displayComments(`/api/display-comments?includeHateComments=${includeHateComments}`)
     console.log('Display bata',typeof(data.comments))
+    console.log(includeHateComments)
     setFetchedComments(data.comments)
   }
 
+  const handleDeleteClick = async () => {
+    setIncludeHateComments(false)
+  }
+
   //fetch comments when the component loads
-  useEffect(()=>{
+  useEffect(() => {
     handleDisplayComments();
-  },[])
+  }, [includeHateComments])
 
   return (
     <div>
@@ -60,7 +71,7 @@ const NewsfeedPage = () => {
       />
       <CommentsDisplay comments={fetchedComments}/>
       <Button 
-        title={"Delete"}
+        title={"Delete"} onClick={handleDeleteClick}
       />
     </div>
   )
