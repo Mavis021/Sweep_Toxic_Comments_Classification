@@ -5,9 +5,9 @@ const { getData } = require("./getDataFromJson")
 const filepath = path.join(__dirname,"comments.json")
 console.log("path of file:", filepath)
 
-const updateFile = async (newComment, type) =>{
+const updateFile = async (newComment = null , type = null, hideBad = false ) =>{
   try{
-    const { hateComments, goodComments} = getData(filepath)
+    const { hateComments, goodComments, freshComments} = getData(filepath)
     //reading the file content
     let fileContent = fs.readFileSync(filepath, "utf8")
     console.log('content read:',fileContent)
@@ -17,18 +17,30 @@ const updateFile = async (newComment, type) =>{
     // eval(fileContent);
     // Manually assign the values to data object
     data.hateComments = hateComments;
+    data.freshComments = freshComments;
     data.goodComments = goodComments;
     console.log("data read:", data)
     console.log(data.hateComments)
 
     //updating the data
-    if(type === "goodComments"){
-      data.goodComments.push(newComment)
-    } else if (type === "hateComments"){
-      data.hateComments.push(newComment)
-    } else {
-      console.error("Invalid type specified")
-      return
+    if(newComment && type){
+      if(type === "freshComments"){
+        data.freshComments.push(newComment)
+      } else if (type === "hateComments"){
+        data.hateComments.push(newComment)
+      } else if (type === "goodComments"){
+        data.goodComments.push(newComment)
+      } else {
+        console.error("Invalid type specified")
+        return
+      }
+    }
+
+    if(hideBad){
+      data.hateComments = data.hateComments.concat(freshComments)
+      data.freshComments = []
+      console.log("Hate Comments After Update:", data.hateComments)
+      console.log("Fresh Comments After Clearing:", data.freshComments)
     }
 
     //create the updated file content

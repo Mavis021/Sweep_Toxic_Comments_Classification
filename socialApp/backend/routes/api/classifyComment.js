@@ -8,8 +8,8 @@ const { getData } = require('../../data/getDataFromJson.js')
 
 const commentsFilePath = path.join(__dirname, '../../data/comments.json')
 
-const{hateComments,goodComments}=getData(commentsFilePath)
-const allComments = [...goodComments,...hateComments]
+const{hateComments,goodComments,freshComments}=getData(commentsFilePath)
+const allCommentsArray = [...goodComments,...hateComments,...freshComments]
 
 router.post('/', async (req, res) => {
   try {
@@ -27,11 +27,14 @@ router.post('/', async (req, res) => {
     const label = response.data.classification
     console.log('Classification label:', label)
 
+    const classLabel = label === "No hate or offensive speech" ? "goodComment" : "badComment"
+
     //Creating the new comment to add to array
     const newComment ={
-      commentId: generateUniqueId(allComments),
+      commentId: generateUniqueId(allCommentsArray),
       comment: comment,
-      timeStamp: new Date().toISOString()
+      timeStamp: new Date().toISOString(),
+      classLabel : classLabel
     }
 
     console.log('New comment:', newComment)
@@ -39,10 +42,8 @@ router.post('/', async (req, res) => {
     //adding the comment to correct array
     if (label === "No hate or offensive speech"){
       updateFile(newComment, "goodComments")
-      // goodComments.push(newComment)
     } else if (label === "Offensive Language Detected" || label === "Hateful"){
-      updateFile(newComment, "hateComments")
-      // hateComments.push(newComment)
+      updateFile(newComment, "freshComments")
     }
 
     res.status(200).json({ 

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../components/Button/Button';
-import CommentsDisplay from '../components/CommentsDisplay';
+import CommentsDisplay from '../components/CommentDisplay/CommentsDisplay';
 import InputComment from '../components/InputComment/InputComment';
 import  { postCommenApi,displayComments } from './NewsfeedApi';
-import { BodyBox, CommentsDisplayBox, InputCommentBox } from './NewsfeedStyled';
+import { BodyBox, CommentsDisplayBox, InputCommentBox, MainBox, PostBox } from './NewsfeedStyled';
 import PostComponent from '../components/PostComponent/PostComponent';
 import Header from '../components/Header/Header';
 // import usePostData from '../hooks/useMutation';
@@ -22,9 +22,9 @@ const NewsfeedPage = () => {
   // }
 
 
-  const handleChange=(changedData)=>{
+  const handleChange = (changedData) => {
     setInputComment(changedData)
-    console.log('Changed data',inputComment)
+    console.log('Changed data', inputComment)
   }
 
   // const handleSubmitClick=()=>{
@@ -36,8 +36,8 @@ const NewsfeedPage = () => {
   //   setComment('')
   // }
 
-  const handleSubmitClick = async () => {
-    const response = await postCommenApi('/api/classify-comment', {comment : inputComment})
+  const handlePostClick = async () => {
+    const response = await postCommenApi('/api/classify-comment', { comment : inputComment })
     console.log('after the comment is submitted:', response)
 
     if(response.status === 200){
@@ -49,13 +49,23 @@ const NewsfeedPage = () => {
 
   const handleDisplayComments = async () => {
     const data = await displayComments(`/api/display-comments?includeHateComments=${includeHateComments}`)
-    console.log('Display bata',typeof(data.comments))
+    console.log('Display bata', typeof(data.comments))
     console.log(includeHateComments)
     setFetchedComments(data.comments)
+    if(!includeHateComments){
+      setIncludeHateComments(true)
+    }
   }
 
-  const handleDeleteClick = async () => {
+  const handleFilterClick = async () => {
     setIncludeHateComments(false)
+  }
+
+  const handleKeyDown = (event) => {
+    if(event.key === 'Enter'){
+      console.log(event.key)
+      handlePostClick()
+    }
   }
 
   //fetch comments when the component loads
@@ -64,30 +74,31 @@ const NewsfeedPage = () => {
   }, [includeHateComments])
 
   return (
-    <div>
+    <MainBox>
       <Header />
       <BodyBox>
-        <div>
+        <PostBox>
           <PostComponent />
           <InputCommentBox >
             <InputComment 
               value={inputComment}
               onChange={(changedData) => {handleChange(changedData)}}
+              onKeyDown={handleKeyDown}
             />
             <Button 
-              title={"Submit"} onClick={handleSubmitClick}
+              title={"Post"} onClick={handlePostClick}
             />
           </InputCommentBox>
-        </div>
+        </PostBox>
 
         <CommentsDisplayBox>
           <CommentsDisplay comments={fetchedComments}/>
           <Button 
-            title={"Delete"} onClick={handleDeleteClick}
+            title={"Filter"} onClick={handleFilterClick}
           />
         </CommentsDisplayBox>
       </BodyBox>
-    </div>
+    </MainBox>
   )
 }
 

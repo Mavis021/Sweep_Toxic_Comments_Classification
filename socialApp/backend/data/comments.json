@@ -1,51 +1,43 @@
 {
-  "hateComments": [
+  "hateComments": [],
+  "freshComments": [
     {
-      "commentId": "00",
-      "comment": "This is a great post!",
-      "timestamp": "2024-11-13T08:30:00Z"
-    },
-    {
-      "commentId": "01",
-      "comment": "This is a great post!",
-      "timestamp": "2024-11-13T08:30:00Z"
-    },
-    {
-      "commentId": "02",
-      "comment": "This is a great post!",
-      "timestamp": "2024-11-13T08:30:00Z"
-    },
-    {
-      "commentId": "190",
+      "commentId": "04",
       "comment": "Stupid man",
-      "timeStamp": "2024-11-17T13:58:42.602Z"
+      "timestamp": "2024-11-13T13:14:10.446Z",
+      "classLabel": "badComment"
     },
     {
-      "commentId": "713",
+      "commentId": "638",
+      "comment": "Bad boy",
+      "timeStamp": "2024-11-18T13:14:10.446Z",
+      "classLabel": "badComment"
+    },
+    {
+      "commentId": "327",
       "comment": "Stupid job",
-      "timeStamp": "2024-11-17T14:01:14.284Z"
+      "timeStamp": "2024-11-18T15:03:52.553Z",
+      "classLabel": "badComment"
     }
   ],
   "goodComments": [
     {
-      "commentId": "03",
-      "comment": "This is a great post!",
-      "timestamp": "2024-11-13T08:30:00Z"
-    },
-    {
-      "commentId": "04",
-      "comment": "This is a great post!",
-      "timestamp": "2024-11-13T08:30:00Z"
-    },
-    {
       "commentId": "05",
       "comment": "This is a great post!",
-      "timestamp": "2024-11-13T08:30:00Z"
+      "timestamp": "2024-11-13T15:03:52.553Z",
+      "classLabel": "goodComment"
     },
     {
       "commentId": "930",
       "comment": "Good job",
-      "timeStamp": "2024-11-17T14:00:54.994Z"
+      "timeStamp": "2024-11-17T14:00:54.994Z",
+      "classLabel": "goodComment"
+    },
+    {
+      "commentId": "03",
+      "comment": "Looking Great",
+      "timestamp": "2024-11-13T15:03:52.553Z",
+      "classLabel": "goodComment"
     }
   ]
 }

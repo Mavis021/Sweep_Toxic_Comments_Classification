@@ -9,7 +9,7 @@ const getData = (filePath) =>{
     return JSON.parse(fileContent)
   }catch(error){
     console.error('Error reading the json file:', error)
-    return { hateComments: [], goodComments: [] }
+    return { hateComments: [], goodComments:[], allComments: [] }
   }
 }
 
