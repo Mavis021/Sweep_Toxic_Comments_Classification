@@ -1,7 +1,8 @@
-from flask import Flask,request,jsonify
+#api to load the ai model
+from flask import Flask, request, jsonify
 import joblib
 
-app = Flask(__name__)
+app = Flask( __name__ )
 
 #loading the model
 model = joblib.load('../../../models/decision_tree_model.pkl')

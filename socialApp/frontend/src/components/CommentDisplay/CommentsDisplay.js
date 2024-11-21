@@ -6,10 +6,10 @@ const CommentsDisplay = ({comments}) => {
   return (
     <div>
       <h1>Comments</h1>
-      {console.log('from display',comments)}
+      {console.log('from display', comments)}
       <div>
         {comments.map((comment) => (
-          <CommentDiv key={comment.commentId}>
+          <CommentDiv key = {comment.commentId}>
             <p>
               {comment.comment}
             </p>

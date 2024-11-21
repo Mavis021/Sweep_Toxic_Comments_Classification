@@ -7,19 +7,19 @@ const post = async (url, body) => {
 
   try{
     const response = await axios.post(url, body, {headers})
-    console.log('main post:',response)
+    console.log('main post:', response)
     return response
   } catch(error) {
-    console.log('Error in loading the server',error.message)
+    console.log('Error in loading the server', error.message)
   }
 }
 
-const get = async (url) =>{
+const get = async (url) => {
   try{
-    const response =await axios.get(url)
+    const response = await axios.get(url)
     return response
   } catch(error) {
-    console.log('Error fetching the data',error)
+    console.log('Error fetching the data', error)
   }
 }
 

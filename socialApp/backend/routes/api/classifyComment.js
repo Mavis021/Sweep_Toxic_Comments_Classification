@@ -1,3 +1,4 @@
+//api to clasiify the comments
 const express = require('express')
 const axios = require('axios')
 const path = require('path')
@@ -8,15 +9,15 @@ const { getData } = require('../../data/getDataFromJson.js')
 
 const commentsFilePath = path.join(__dirname, '../../data/comments.json')
 
-const{hateComments,goodComments,freshComments}=getData(commentsFilePath)
-const allCommentsArray = [...goodComments,...hateComments,...freshComments]
+const{ hateComments, goodComments, freshComments } = getData(commentsFilePath)
+const allCommentsArray = [...goodComments, ...hateComments, ...freshComments]
 
 router.post('/', async (req, res) => {
   try {
     const { comment } = req.body
 
     if(!comment) {
-      return res.status(400).json({error: 'Comment is required'})
+      return res.status(400).json({ error: 'Comment is required' })
     }
 
     console.log('Received Comment:', comment)
@@ -30,7 +31,7 @@ router.post('/', async (req, res) => {
     const classLabel = label === "No hate or offensive speech" ? "goodComment" : "badComment"
 
     //Creating the new comment to add to array
-    const newComment ={
+    const newComment = {
       commentId: generateUniqueId(allCommentsArray),
       comment: comment,
       timeStamp: new Date().toISOString(),

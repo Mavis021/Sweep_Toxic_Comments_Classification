@@ -1,7 +1,7 @@
 //main api for the backend
 const express = require('express')
-const bodyParser=require('body-parser')
-const cors=require('cors')
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 //initializing express
 const app = express()
