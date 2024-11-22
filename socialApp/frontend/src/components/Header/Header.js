@@ -1,11 +1,16 @@
-import React from 'react'
-import HeaderStyled from './HeaderStyled'
-
+import React from 'react';
+import {HeaderStyled,LogoImage} from './HeaderStyled';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import logo from '../../images/logo2.png'
 
 const Header = () => {
   return (
-    <HeaderStyled></HeaderStyled>
-  )
-}
+    <HeaderStyled>
+      <LogoImage src={logo} alt="flower"/>
+      <FontAwesomeIcon icon={faBars} size="2x" />  {/* Bars icon */}
+    </HeaderStyled>
+  );
+};
 
-export default Header
+export default Header;

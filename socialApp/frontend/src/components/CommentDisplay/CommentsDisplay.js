@@ -1,6 +1,6 @@
 import React from 'react'
 import { TimestampDisplay } from '../../config/dateFormat'
-import { CommentDiv } from './CommentDisplayStyled'
+import { CommentDate, CommentDiv } from './CommentDisplayStyled'
 
 const CommentsDisplay = ({comments}) => {
   return (
@@ -13,9 +13,9 @@ const CommentsDisplay = ({comments}) => {
             <p>
               {comment.comment}
             </p>
-            <p>
+            <CommentDate>
               {TimestampDisplay(comment.timeStamp)}
-            </p>
+            </CommentDate>
           </CommentDiv>
         ))}
       </div>
