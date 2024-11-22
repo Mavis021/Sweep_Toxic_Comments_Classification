@@ -1,6 +1,5 @@
 {
-  "hateComments": [],
-  "freshComments": [
+  "hateComments": [
     {
       "commentId": "638",
       "comment": "Bad boy",
@@ -12,13 +11,44 @@
       "comment": "Stupid job",
       "timeStamp": "2024-11-18T15:03:52.553Z",
       "classLabel": "badComment"
+    },
+    {
+      "commentId": "452",
+      "comment": "stupid man",
+      "timeStamp": "2024-11-22T03:49:51.834Z",
+      "classLabel": "badComment"
+    },
+    {
+      "commentId": "015",
+      "comment": "Fuck you Bitch!!! Go die",
+      "timeStamp": "2024-11-22T03:58:12.566Z",
+      "classLabel": "badComment"
+    },
+    {
+      "commentId": "667",
+      "comment": "Beutiful picture",
+      "timeStamp": "2024-11-22T03:58:32.924Z",
+      "classLabel": "badComment"
+    },
+    {
+      "commentId": "959",
+      "comment": "this post is so ugly",
+      "timeStamp": "2024-11-22T03:58:47.118Z",
+      "classLabel": "badComment"
     }
   ],
+  "freshComments": [],
   "goodComments": [
     {
       "commentId": "930",
       "comment": "Good job",
       "timeStamp": "2024-11-17T14:00:54.994Z",
+      "classLabel": "goodComment"
+    },
+    {
+      "commentId": "253",
+      "comment": "You are looking gorgeous",
+      "timeStamp": "2024-11-22T03:51:52.943Z",
       "classLabel": "goodComment"
     }
   ]

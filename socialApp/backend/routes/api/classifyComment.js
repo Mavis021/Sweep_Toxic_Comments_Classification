@@ -28,7 +28,21 @@ router.post('/', async (req, res) => {
     const label = response.data.classification
     console.log('Classification label:', label)
 
-    const classLabel = label === "No hate or offensive speech" ? "goodComment" : "badComment"
+    const badLabels = ['anger',
+      'disgust',];
+
+    const goodLabels = [
+      'anticipation',
+      'fear',
+      'joy',
+      'love',
+      'optimism',
+      'pessimism',
+      'sadness',
+      'surprise',
+      'trust']
+
+    const classLabel = badLabels.includes(label) ? "badComment" : "goodComment"
 
     //Creating the new comment to add to array
     const newComment = {
@@ -41,9 +55,9 @@ router.post('/', async (req, res) => {
     console.log('New comment:', newComment)
 
     //adding the comment to correct array
-    if (label === "No hate or offensive speech"){
+    if (goodLabels.includes(label)){
       updateFile(newComment, "goodComments")
-    } else if (label === "Offensive Language Detected" || label === "Hateful"){
+    } else if (badLabels.includes(label)){
       updateFile(newComment, "freshComments")
     }
 
