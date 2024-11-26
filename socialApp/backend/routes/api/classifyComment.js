@@ -1,3 +1,4 @@
+//api to clasiify the comments
 const express = require('express')
 const axios = require('axios')
 const path = require('path')
@@ -8,15 +9,15 @@ const { getData } = require('../../data/getDataFromJson.js')
 
 const commentsFilePath = path.join(__dirname, '../../data/comments.json')
 
-const{hateComments,goodComments,freshComments}=getData(commentsFilePath)
-const allCommentsArray = [...goodComments,...hateComments,...freshComments]
+const{ hateComments, goodComments, freshComments } = getData(commentsFilePath)
+const allCommentsArray = [...goodComments, ...hateComments, ...freshComments]
 
 router.post('/', async (req, res) => {
   try {
     const { comment } = req.body
 
     if(!comment) {
-      return res.status(400).json({error: 'Comment is required'})
+      return res.status(400).json({ error: 'Comment is required' })
     }
 
     console.log('Received Comment:', comment)
@@ -27,10 +28,24 @@ router.post('/', async (req, res) => {
     const label = response.data.classification
     console.log('Classification label:', label)
 
-    const classLabel = label === "No hate or offensive speech" ? "goodComment" : "badComment"
+    const badLabels = ['anger',
+      'disgust',];
+
+    const goodLabels = [
+      'anticipation',
+      'fear',
+      'joy',
+      'love',
+      'optimism',
+      'pessimism',
+      'sadness',
+      'surprise',
+      'trust']
+
+    const classLabel = badLabels.includes(label) ? "badComment" : "goodComment"
 
     //Creating the new comment to add to array
-    const newComment ={
+    const newComment = {
       commentId: generateUniqueId(allCommentsArray),
       comment: comment,
       timeStamp: new Date().toISOString(),
@@ -40,9 +55,9 @@ router.post('/', async (req, res) => {
     console.log('New comment:', newComment)
 
     //adding the comment to correct array
-    if (label === "No hate or offensive speech"){
+    if (goodLabels.includes(label)){
       updateFile(newComment, "goodComments")
-    } else if (label === "Offensive Language Detected" || label === "Hateful"){
+    } else if (badLabels.includes(label)){
       updateFile(newComment, "freshComments")
     }
 

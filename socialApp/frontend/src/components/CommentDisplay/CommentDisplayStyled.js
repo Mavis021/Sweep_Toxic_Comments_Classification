@@ -1,10 +1,17 @@
 import styled from "styled-components";
 
 const CommentDiv = styled.div`
-  width: 100%;
-  border: 2px solid black;
-  display: flex;
-  flex-direction: column;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
 `
 
-export {CommentDiv}
+const CommentDate = styled.p`
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 5px;
+`
+
+export {CommentDiv, CommentDate}

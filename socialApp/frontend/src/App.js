@@ -2,7 +2,7 @@ import NewsfeedPage from './pages/NewsfeedPage';
 
 function App() {
   return (
-    <div className="App">
+    <div className = "App">
       <NewsfeedPage />
     </div>
   );

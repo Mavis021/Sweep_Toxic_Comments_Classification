@@ -2,9 +2,18 @@ import styled from 'styled-components'
 
 const HeaderStyled = styled.div`
   width: 100%;
-  height: 100px;
-  background-color: black;
-  margin-bottom: 10px;
+  height: 120px;
+  background-color: #C6A9E8;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 50px;
 `
 
-export default HeaderStyled
+const LogoImage = styled.img`
+  width: 120px;
+`
+
+export {HeaderStyled,LogoImage}

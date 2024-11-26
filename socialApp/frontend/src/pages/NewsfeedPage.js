@@ -1,3 +1,4 @@
+//this is the main page that displays the post
 import React, { useState, useEffect } from 'react'
 import Button from '../components/Button/Button';
 import CommentsDisplay from '../components/CommentDisplay/CommentsDisplay';
@@ -6,35 +7,16 @@ import  { postCommenApi,displayComments } from './NewsfeedApi';
 import { BodyBox, CommentsDisplayBox, InputCommentBox, MainBox, PostBox } from './NewsfeedStyled';
 import PostComponent from '../components/PostComponent/PostComponent';
 import Header from '../components/Header/Header';
-// import usePostData from '../hooks/useMutation';
 
 const NewsfeedPage = () => {
   const[inputComment, setInputComment] = useState('');
   const[fetchedComments, setFetchedComments] = useState([])
   const[includeHateComments, setIncludeHateComments] = useState (true)
 
-  console.log("HI")
-  // const mutation = usePostData()
-  // console.log(mutation);
-
-  // if(!mutation){
-  //   console.log("Muattion not working")
-  // }
-
-
   const handleChange = (changedData) => {
     setInputComment(changedData)
     console.log('Changed data', inputComment)
   }
-
-  // const handleSubmitClick=()=>{
-  //   const path=`${baseUrl}/api/classify-comment`
-  //   mutation.mutate({
-  //     url: path,
-  //     body:{comment}
-  //   })
-  //   setComment('')
-  // }
 
   const handlePostClick = async () => {
     const response = await postCommenApi('/api/classify-comment', { comment : inputComment })
