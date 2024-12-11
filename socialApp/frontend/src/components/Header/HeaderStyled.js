@@ -16,4 +16,10 @@ const LogoImage = styled.img`
   width: 120px;
 `
 
-export {HeaderStyled,LogoImage}
+const HeaderText = styled.p`
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+`
+
+export {HeaderStyled,LogoImage,HeaderText}
